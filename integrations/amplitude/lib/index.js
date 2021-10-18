@@ -53,7 +53,7 @@ var Amplitude = (module.exports = integration('Amplitude')
   .option('unsetParamsReferrerOnNewSession', false)
   .option('trackProductsOnce', false)
   .option('versionName', '')
-  .option('useAmplitudeReferral', true)
+  .option('useAmplitudeReferral', false)
   .tag('<script src="' + src + '">'));
 
 /**
@@ -146,7 +146,8 @@ Amplitude.prototype.loaded = function() {
 Amplitude.prototype.page = function(page) {
   this.setDeviceIdFromAnonymousId(page);
 
-  if (this.options.trackReferrer && !this.options.useAmplitudeReferral) this.sendReferrer();
+  if (this.options.trackReferrer && !this.options.useAmplitudeReferral)
+    this.sendReferrer();
 
   var category = page.category();
   var name = page.fullName();
@@ -450,12 +451,7 @@ Amplitude.prototype.sendReferrer = function() {
   if (!referrer || referrer.length === 0) return;
 
   identify.setOnce('initial_referrer', referrer);
-
-  if (this.options.saveParamsReferrerOncePerSession) {
-    identify.setOnce('referrer', referrer);
-  } else {
-    identify.set('referrer', referrer);
-  }
+  identify.set('referrer', referrer);
 
   var parts = referrer.split('/');
   if (parts.length >= 3) {
