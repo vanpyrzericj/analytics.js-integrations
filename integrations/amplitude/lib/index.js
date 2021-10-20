@@ -92,7 +92,7 @@ Amplitude.prototype.initialize = function() {
       this.analytics.user().anonymousId()
   });
 
-  window.amplitude.setDomain(window.location.href);
+  // window.amplitude.setDomain(window.location.href);
 
   // Initialize the amplitute with user specified site version if any.
   // https://help.amplitude.com/hc/en-us/articles/115001361248-JavaScript-SDK-Installation#setting-version-name
