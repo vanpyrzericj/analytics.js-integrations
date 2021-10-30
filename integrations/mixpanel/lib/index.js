@@ -148,7 +148,8 @@ var traitAliases = {
   lastSeen: '$last_seen',
   name: '$name',
   username: '$username',
-  phone: '$phone'
+  phone: '$phone',
+  avatar: '$avatar'
 };
 
 /**
